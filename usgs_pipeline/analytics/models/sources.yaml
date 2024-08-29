@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: landing_stage_test
+    database: demo_db
+    schema: landing_stage
+    tables:
+      - name: extraction_stage
+      

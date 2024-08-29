@@ -1,0 +1,1 @@
+select * FROM {{ source('landing_stage_test', 'extraction_stage')}} limit 10
