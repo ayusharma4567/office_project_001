@@ -1,6 +1,6 @@
 version: 2
 sources:
-  - name: landing_stage_test
+  - name: landing
     database: demo_db
     schema: landing_stage
     tables:

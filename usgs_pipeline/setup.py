@@ -9,7 +9,6 @@ setup(
         "dagster-snowflake",
         "pandas",
         "dagster_dbt",
-        "dbt-snowflake",
         "dagster_snowflake_pandas",
         "dagster-cloud",
         "dbt_core",
