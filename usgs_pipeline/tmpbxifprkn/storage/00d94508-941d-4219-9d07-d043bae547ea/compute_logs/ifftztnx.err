@@ -1,5 +1,0 @@
-[32m2024-09-02 13:52:20 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 00d94508-941d-4219-9d07-d043bae547ea - 43469 - LOGS_CAPTURED - Started capturing logs in process (pid: 43469).
-[32m2024-09-02 13:52:20 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 00d94508-941d-4219-9d07-d043bae547ea - 43469 - frequent_earthquake_location - STEP_START - Started execution of step "frequent_earthquake_location".
-[32m2024-09-02 13:52:21 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 00d94508-941d-4219-9d07-d043bae547ea - 43469 - frequent_earthquake_location - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
-[32m2024-09-02 13:52:21 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 00d94508-941d-4219-9d07-d043bae547ea - 43469 - frequent_earthquake_location - ASSET_MATERIALIZATION - Materialized value frequent_earthquake_location.
-[32m2024-09-02 13:52:21 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 00d94508-941d-4219-9d07-d043bae547ea - 43469 - frequent_earthquake_location - STEP_SUCCESS - Finished execution of step "frequent_earthquake_location" in 1.73s.
