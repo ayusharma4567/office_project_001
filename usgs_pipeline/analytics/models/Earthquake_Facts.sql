@@ -1,6 +1,9 @@
 -- models/earthquake_facts.sql
 
-{{ config(materialized='table') }}
+{{ config(
+    materialized='incremental',
+    unique_key='Earthquake_ID'  -- This should match a unique identifier for your facts
+) }}
 
 WITH source_data AS (
     SELECT
@@ -8,6 +11,9 @@ WITH source_data AS (
         DATE(TIME) AS event_date,
         TIME(TIME) AS event_time
     FROM {{ source('landing', 'extraction_stage') }} -- Reference to the source table
+    {% if is_incremental() %}
+    WHERE TIME > (SELECT MAX(Time) FROM {{ this }}) -- Only get records newer than the latest in the table
+    {% endif %}
 )
 
 SELECT
@@ -39,4 +45,3 @@ LEFT JOIN
 LEFT JOIN
     {{ ref('magnitude_type_dimension') }} mtd
     ON sd.Magnitude_Type = mtd.Magnitude_Type;
-
