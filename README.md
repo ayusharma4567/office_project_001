@@ -1,13 +1,16 @@
 # office_project_001
 office project on dagster - dbt - snowflake
 
-## Creating a database and warehouse into the snowflake:
+## Creating a database and warehouse in Snowflake
+
+```sql
 create or replace database Demo_db;
 create or replace schema Demo_db.landing_stage;
 create or replace schema Demo_db.curated_stage;
 create or replace schema Demo_db.consumption_stage;
-create or replace schema demo_db.final_stage;
+create or replace schema Demo_db.final_stage;
 create or replace warehouse Demo_wh with warehouse_size='large';
+```
 
 ## Creating a Star Schema Model from Earthquake Data
 
@@ -88,9 +91,4 @@ This table includes information about the type of magnitude measurement used.
   - Assign a `Time_ID` by matching the event time with `Time_Dimension`.
   - Assign a `Location_ID` by matching latitude, longitude, and place with `Location_Dimension`.
   - Assign a `Magnitude_Type_ID` by matching the magnitude type.
-
-### 3. Querying the Star Schema:
-
-To get meaningful insights, join the `Earthquake_Facts` table with `Time_Dimension`, `Location_Dimension`, and `Magnitude_Type_Dimension` as needed.
-
 
