@@ -1,16 +1,17 @@
--- models/magnitude_type_dimension.sql
-
 {{ config(materialized='table') }}
 
+WITH distinct_magnitude_types AS (
+    SELECT DISTINCT
+        MAGTYPE  -- Corrected column name
+    FROM
+        {{ source('landing', 'extraction_stage') }} -- Reference to the source table
+    WHERE
+        MAGTYPE IS NOT NULL  -- Ensure this column exists and is not null
+)
+
 SELECT
-    ROW_NUMBER() OVER() AS Magnitude_Type_ID,  -- Generate a unique Magnitude_Type_ID
-    Magnitude_Type
+    ROW_NUMBER() OVER (ORDER BY MAGTYPE) AS Magnitude_Type_ID,  -- Generate a unique Magnitude_Type_ID
+    MAGTYPE
 FROM
-    (
-        SELECT DISTINCT
-            Magnitude_Type
-        FROM
-            {{ source('landing', 'extraction_stage') }} -- Reference to the source table
-        WHERE
-            Magnitude_Type IS NOT NULL
-    ) AS distinct_magnitude_types;
+    distinct_magnitude_types
+

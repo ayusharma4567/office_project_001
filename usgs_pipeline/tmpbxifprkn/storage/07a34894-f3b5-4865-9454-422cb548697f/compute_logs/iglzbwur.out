@@ -1,0 +1,20 @@
+Running with dbt=1.8.0
+Registered adapter: snowflake=1.8.3
+Found 4 models, 1 source, 448 macros
+
+Concurrency: 1 threads (target='dev')
+
+1 of 4 START sql table model consumption_stage.Location_Dimension .............. [RUN]
+1 of 4 OK created sql table model consumption_stage.Location_Dimension ......... [[32mSUCCESS 1[0m in 1.42s]
+2 of 4 START sql table model consumption_stage.Magnitude_Type_Dimension ........ [RUN]
+2 of 4 OK created sql table model consumption_stage.Magnitude_Type_Dimension ... [[32mSUCCESS 1[0m in 1.42s]
+3 of 4 START sql table model consumption_stage.Time_Dimension .................. [RUN]
+3 of 4 OK created sql table model consumption_stage.Time_Dimension ............. [[32mSUCCESS 1[0m in 1.28s]
+4 of 4 START sql table model consumption_stage.Earthquake_Facts ................ [RUN]
+4 of 4 OK created sql table model consumption_stage.Earthquake_Facts ........... [[32mSUCCESS 1[0m in 1.86s]
+
+Finished running 4 table models in 0 hours 0 minutes and 7.62 seconds (7.62s).
+
+[32mCompleted successfully[0m
+
+Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4

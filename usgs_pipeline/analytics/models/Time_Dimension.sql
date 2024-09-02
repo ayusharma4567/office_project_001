@@ -1,19 +1,25 @@
-{{config(materialized='table')}}
+{{ config(materialized='table') }}
 
-with raw_table as (
-    select
-        Time as event_time
-    from {{ source('landing', 'extraction_stage') }}
+WITH raw_table AS (
+    SELECT
+        Time AS event_time
+    FROM {{ source('landing', 'extraction_stage') }}
+),
+daily_summary AS (
+    SELECT 
+        Date(event_time) AS date,
+        EXTRACT(year FROM event_time) AS year,
+        EXTRACT(month FROM event_time) AS month,
+        EXTRACT(day FROM event_time) AS day,
+        COUNT(*) AS event_count -- Example aggregation
+    FROM raw_table
+    GROUP BY date, year, month, day
 )
 
-select 
-    ROW_NUMBER() OVER() AS Time_ID,
-    Date(event_time) as date,
-    Time(event_time) as time,
-    extract(year from event_time) as year,
-    extract(month from event_time) as month,
-    extract(day from event_time) as day
-from
-    raw_table
-group by
-    date, time, year, month, day
+SELECT 
+    ROW_NUMBER() OVER (ORDER BY date) AS Time_ID,
+    date,
+    year,
+    month,
+    day
+FROM daily_summary

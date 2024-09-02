@@ -1,9 +1,4 @@
--- models/earthquake_facts.sql
-
-{{ config(
-    materialized='incremental',
-    unique_key='Earthquake_ID'  -- This should match a unique identifier for your facts
-) }}
+{{ config(materialized='table') }}
 
 WITH source_data AS (
     SELECT
@@ -11,37 +6,34 @@ WITH source_data AS (
         DATE(TIME) AS event_date,
         TIME(TIME) AS event_time
     FROM {{ source('landing', 'extraction_stage') }} -- Reference to the source table
-    {% if is_incremental() %}
-    WHERE TIME > (SELECT MAX(Time) FROM {{ this }}) -- Only get records newer than the latest in the table
-    {% endif %}
 )
 
 SELECT
-    ROW_NUMBER() OVER() AS Earthquake_ID,  -- Creates a unique ID for the fact table
+    ROW_NUMBER() OVER (ORDER BY sd.TIME) AS Earthquake_ID,  -- Creates a unique ID for the fact table
     td.Time_ID,
     ld.Location_ID,
     mtd.Magnitude_Type_ID,  -- Use Magnitude_Type_ID from magnitude_type_dimension
     sd.Depth,
-    sd.Magnitude,
+    sd.MAGTYPE,
     sd.NST,
     sd.GAP,
     sd.DMIN,
     sd.RMS,
-    sd.Horizontal_Error,
-    sd.Depth_Error,
-    sd.Magnitude_Error,
-    sd.Magnitude_ST,
+    sd.HORIZONTALERROR as Horizontal_Error,
+    sd.DEPTHERROR as Depth_Error,
+    sd.MAGERROR as Magnitude_Error,
+    sd.MAGNST as Magnitude_ST,
     sd.Status,
-    sd.Location_Source,
-    sd.Magnitude_Source
+    sd.LOCATIONSOURCE as Location_Source,
+    sd.MAGSOURCE as Magnitude_Source
 FROM
     source_data sd
 LEFT JOIN
-    {{ ref('time_dimension') }} td
-    ON DATE(sd.Time) = td.date AND TIME(sd.Time) = td.time
+    {{ ref('Time_Dimension') }} td
+    ON DATE(sd.Time) = td.date
 LEFT JOIN
-    {{ ref('location_dimension') }} ld
+    {{ ref('Location_Dimension') }} ld
     ON sd.Latitude = ld.Latitude AND sd.Longitude = ld.Longitude
 LEFT JOIN
-    {{ ref('magnitude_type_dimension') }} mtd
-    ON sd.Magnitude_Type = mtd.Magnitude_Type;
+    {{ ref('Magnitude_Type_Dimension') }} mtd
+    ON sd.MAGTYPE = mtd.MAGTYPE

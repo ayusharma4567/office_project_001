@@ -1,0 +1,6 @@
+[32m2024-09-02 13:28:06 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - LOGS_CAPTURED - Started capturing logs in process (pid: 41041).
+[32m2024-09-02 13:28:06 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - extraction_stage - STEP_START - Started execution of step "extraction_stage".
+[32m2024-09-02 13:28:11 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - extraction_stage - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+[32m2024-09-02 13:28:16 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - extraction_stage - ASSET_MATERIALIZATION - Materialized value extraction_stage.
+[32m2024-09-02 13:28:16 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - extraction_stage - HANDLED_OUTPUT - Handled output "result" using IO manager "snowflake_io_manager"
+[32m2024-09-02 13:28:16 +0530[0m - dagster - [34mDEBUG[0m - __ASSET_JOB_0 - 07a34894-f3b5-4865-9454-422cb548697f - 41041 - extraction_stage - STEP_SUCCESS - Finished execution of step "extraction_stage" in 9.48s.
