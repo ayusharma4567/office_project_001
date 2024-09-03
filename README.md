@@ -10,6 +10,12 @@ create or replace schema Demo_db.curated_stage;
 create or replace schema Demo_db.consumption_stage;
 create or replace schema Demo_db.final_stage;
 create or replace warehouse Demo_wh with warehouse_size='large';
+select * from landing_stage.extraction_stage;
+select * from consumption_stage.location_dimension;
+select * from consumption_stage.magnitude_type_dimension;
+select * from consumption_stage.time_dimension;
+select * from consumption_stage.earthquake_facts;
+select * from final_stage.frequent_earthquake_location;
 ```
 
 ## Creating a Star Schema Model from Earthquake Data
