@@ -2,7 +2,8 @@ from dagster import asset, AssetExecutionContext, MaterializeResult
 from dagster_snowflake import SnowflakeResource
 
 @asset(
-    deps=["Earthquake_Facts", "Location_Dimension"]
+    deps=["Earthquake_Facts", "Location_Dimension"],
+    group_name="final_query_group"
 )
 def frequent_earthquake_location(snowflake: SnowflakeResource) -> MaterializeResult:
     """

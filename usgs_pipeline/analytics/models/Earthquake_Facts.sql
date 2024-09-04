@@ -14,7 +14,6 @@ SELECT
     ld.Location_ID,
     mtd.Magnitude_Type_ID,  -- Use Magnitude_Type_ID from magnitude_type_dimension
     sd.Depth,
-    sd.MAGTYPE,
     sd.NST,
     sd.GAP,
     sd.DMIN,
@@ -22,10 +21,7 @@ SELECT
     sd.HORIZONTALERROR as Horizontal_Error,
     sd.DEPTHERROR as Depth_Error,
     sd.MAGERROR as Magnitude_Error,
-    sd.MAGNST as Magnitude_ST,
-    sd.Status,
-    sd.LOCATIONSOURCE as Location_Source,
-    sd.MAGSOURCE as Magnitude_Source
+    sd.MAGNST as Magnitude_ST
 FROM
     source_data sd
 LEFT JOIN

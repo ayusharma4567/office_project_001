@@ -33,7 +33,6 @@ This table contains the quantitative measurements and references keys from the d
 | `Location_ID`      | Foreign key to Location dimension                  |
 | `Depth`            | Depth of the earthquake                            |
 | `Magnitude`        | Magnitude of the earthquake                        |
-| `Magnitude_Type`   | Type of magnitude measurement                      |
 | `NST`              | Number of seismic stations                         |
 | `GAP`              | Azimuthal gap                                      |
 | `DMIN`             | Minimum distance to seismometer                    |
@@ -42,9 +41,7 @@ This table contains the quantitative measurements and references keys from the d
 | `Depth_Error`      | Error in depth measurement                         |
 | `Magnitude_Error`  | Error in magnitude measurement                     |
 | `Magnitude_ST`     | Number of stations contributing to magnitude       |
-| `Status`           | Status of the earthquake data                      |
-| `Location_Source`  | Source of location data                            |
-| `Magnitude_Source` | Source of magnitude data                           |
+
 
 ### 2. Dimension Table: `Time_Dimension`
 
@@ -82,6 +79,9 @@ This table includes information about the type of magnitude measurement used.
 |---------------------|-----------------------------------------|
 | `Magnitude_Type_ID` | Primary key (Unique ID for magnitude type) |
 | `Magnitude_Type`    | Type of magnitude (e.g., mb, ml, md)    |
+| `Status`           | Status of the earthquake data            |
+| `Location_Source`  | Source of location data                  |
+| `Magnitude_Source` | Source of magnitude data                 |
 
 ## Implementation Steps
 
